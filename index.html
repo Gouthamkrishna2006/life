@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Insurance Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Life Insurance Calculator</h1>
+        <form id="calculatorForm" onsubmit="event.preventDefault(); calculate();">
+            <br>
+            <div class="form-group">
+                <label for="term">Premium payment term:</label>
+                <br>
+                <input type="number" id="term" required>
+            </div>
+            <div class="form-group">
+                <label for="noBenefitTerms">Total periods with no benefits:</label>
+                <br>
+                <input type="number" id="noBenefitTerms" required>
+            </div>
+            <div class="form-group">
+                <label for="premium">Premium to be paid:</label>
+                <br>
+                <input type="number" id="premium" required>
+            </div>
+            <div class="form-group">
+                <label for="gst1">GST Charges for the first year:</label>
+                <br>
+                <input type="number" id="gst1" required>
+            </div>
+            <div class="form-group">
+                <label for="gstRest">GST Charges for the second year onwards:</label>
+                <br>
+                <input type="number" id="gstRest" required>
+            </div>
+            <div class="form-group">
+                <label for="annuity">Annuity payment amount:</label>
+                <br>
+                <input type="number" id="annuity" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Current age of annuitant:</label>
+                <br>
+                <input type="number" id="age" required>
+            </div>
+            <div class="form-group">
+                <label for="deathAge">Age to consider for termination:</label>
+                <br>
+                <input type="number" id="deathAge" required>
+            </div>
+            <div class="form-group">
+                <label for="deathBenefit">Amount on termination of annuitant:</label>
+                <br>
+                <input type="number" id="deathBenefit" required>
+            </div>
+            <div class="form-group">
+                <label for="inflation">Inflation to consider (%):</label>
+                <br>
+                <input type="number" id="inflation" step="any" required>
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="results" class="results" style="display: none;"></div>
+    </div>
+    <script src="money.js"></script>
+</body>
+</html>
