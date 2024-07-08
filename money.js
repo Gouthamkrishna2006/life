@@ -40,7 +40,7 @@ function presentValueOfPaymentsAfterDelayAfterWithdrawal(annuity, r, r2, T, dela
     return [bankbalance , moneytaken];
 }
 
-function showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi) {
+function showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi,roiwithtermination) {
     const resultsDiv = document.getElementById("results");
     const theresults = `
         <p><strong>Total Investment:</strong> ${totalInvestment.toLocaleString('en-IN', { maximumFractionDigits: 2, style: 'currency', currency: 'INR' })}</p>
@@ -51,6 +51,7 @@ function showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, 
         <p><strong>Total Return with Termination in Present Value:</strong> ${totalAnnuityPresentValueTermination.toLocaleString('en-IN', { maximumFractionDigits: 2, style: 'currency', currency: 'INR' })}</p>
         <p><strong>Total Profit:</strong> ${returnValue.toLocaleString('en-IN', { maximumFractionDigits: 2, style: 'currency', currency: 'INR' })}</p>
         <p><strong>ROI:</strong> ${roi}%</p>
+        <p><strong>ROI considering termination:</strong> ${roiwithtermination}%</p>
     `;
 
     resultsDiv.innerHTML = theresults;
@@ -84,7 +85,8 @@ function calculate() {
         const totalAnnuityPresentValueTermination = totalAnnuityPresentValue + terminationPresentValue(deathBenefit, inflation, annuityPeriod + term + no_benefit_terms) + termination_bankbalancepresent;
         const returnValue = totalAnnuityPresentValue - totalInvestmentPresent;
         const roi = Math.round((returnValue / totalInvestmentPresent) * 10000) / 100;
-        showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi);
+        const roiwithtermination = Math.round(((totalAnnuityPresentValueTermination - totalInvestmentPresent)/totalInvestmentPresent)*10000)/100;
+        showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi, roiwithtermination);
     } else {
         const totalAnnuity = annuityPeriod * annuity;
         const totalAnnuityPresentValue = presentValueOfPaymentsAfterDelay(annuity, inflation, annuityPeriod, term + no_benefit_terms);
@@ -92,7 +94,8 @@ function calculate() {
         const totalAnnuityPresentValueTermination = totalAnnuityPresentValue + terminationPresentValue(deathBenefit, inflation, annuityPeriod + term + no_benefit_terms);
         const returnValue = totalAnnuityPresentValue - totalInvestmentPresent;
         const roi = Math.round((returnValue / totalInvestmentPresent) * 10000) / 100;
-        showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi);
+        const roiwithtermination = Math.round(((totalAnnuityPresentValueTermination - totalInvestmentPresent)/totalInvestmentPresent)*10000)/100;
+        showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi, roiwithtermination);
     }
 }
 
