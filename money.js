@@ -24,7 +24,7 @@ function paymentsAfterDelayAfterWithdrawal(annuity, r2, T, withdraw) {
         bankbalance = bankbalance * (1 - withdraw);
         bankbalance = bankbalance * (1 + r2);
     }
-    return bankbalance , moneytaken;
+    return [bankbalance , moneytaken];
 }
 
 function presentValueOfPaymentsAfterDelayAfterWithdrawal(annuity, r, r2, T, delayYears, withdraw) {
@@ -37,7 +37,7 @@ function presentValueOfPaymentsAfterDelayAfterWithdrawal(annuity, r, r2, T, dela
         bankbalance = bankbalance * (1 + r2);
     }
     bankbalance = bankbalance / Math.pow(1 + r, T + delayYears);
-    return bankbalance , moneytaken;
+    return [bankbalance , moneytaken];
 }
 
 function showCalculation(totalInvestment, totalInvestmentPresent, totalAnnuity, totalAnnuityPresentValue, totalAnnuityTermination, totalAnnuityPresentValueTermination, returnValue, roi) {
