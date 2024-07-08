@@ -1,7 +1,6 @@
 function presentValueOfPremium(annualpayment, n, r) {
     let discountFactor = (1 - Math.pow(1 + r, -n)) / r;
     let presentvalue = annualpayment * discountFactor;
-    presentvalue = Math.round(presentvalue * 100) / 100;
     return presentvalue;
 }
 
@@ -10,13 +9,11 @@ function presentValueOfPaymentsAfterDelay(annuity, r, T, delayYears) {
     for (let t = 1; t <= T; t++) {
         presentvalue += annuity / Math.pow(1 + r, t + delayYears);
     }
-    presentvalue = Math.round(presentvalue * 100) / 100;
     return presentvalue;
 }
 
 function terminationPresentValue(terminationamount, r, t) {
     let presentvalue = terminationamount / Math.pow(1 + r, t);
-    presentvalue = Math.round(presentvalue * 100) / 100;
     return presentvalue;
 }
 
@@ -45,11 +42,13 @@ function calculate() {
 
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = `
-        <p><strong>Total Investment:</strong> ${totalInvestment}</p>
-        <p><strong>Total Investment in Present Value:</strong> ${totalInvestmentPresent}</p>
-        <p><strong>Total Return:</strong> ${totalAnnuityTermination}</p>
-        <p><strong>Total Return in Present Value:</strong> ${totalAnnuityPresentValueTermination}</p>
-        <p><strong>Total Profit:</strong> ${returnValue}</p>
+        <p><strong>Total Investment:</strong> ${totalInvestment.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
+        <p><strong>Total Investment in Present Value:</strong> ${totalInvestmentPresent.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
+        <p><strong>Total Return:</strong> ${totalAnnuity.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
+        <p><strong>Total Return in Present Value:</strong> ${totalAnnuityPresentValue.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
+        <p><strong>Total Return with Termination:</strong> ${totalAnnuityTermination.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
+        <p><strong>Total Return with Termination in Present Value:</strong> ${totalAnnuityPresentValueTermination.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
+        <p><strong>Total Profit:</strong> ${returnValue.toLocaleString('en-IN', {maximumFractionDigits: 2,style: 'currency',currency: 'INR'})}</p>
         <p><strong>ROI:</strong> ${roi}%</p>
     `;
     resultsDiv.style.display = "block";
