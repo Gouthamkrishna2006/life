@@ -37,7 +37,7 @@ function calculate() {
     const totalAnnuityPresentValue = presentValueOfPaymentsAfterDelay(annuity, inflation, annuityPeriod, term + no_benefit_terms);
     const totalAnnuityTermination = totalAnnuity + deathBenefit;
     const totalAnnuityPresentValueTermination = totalAnnuityPresentValue + terminationPresentValue(deathBenefit, inflation, annuityPeriod);
-    const returnValue = totalAnnuityPresentValueTermination - totalInvestmentPresent;
+    const returnValue = totalAnnuityPresentValue - totalInvestmentPresent;
     const roi = (returnValue / totalInvestmentPresent) * 100;
 
     const resultsDiv = document.getElementById("results");
