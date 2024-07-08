@@ -72,3 +72,13 @@ input {
 .results{
     background-color: #D6EFD8;
 }
+
+select{
+    background-color: #80AF81;
+    margin-left: 10px;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  option{
+    color: #1A5319;
+  }
