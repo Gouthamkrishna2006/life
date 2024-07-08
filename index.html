@@ -10,6 +10,10 @@
     <div class="container">
         <h1>Life Insurance Calculator</h1>
         <form id="calculatorForm" onsubmit="event.preventDefault(); calculate();">
+            <label for="planType">Plan Type:<select id="planType">
+                <option value="normal">Normal</option>
+                <option value="flexi">Flexi</option>
+            </select></label>
             <br>
             <div class="form-group">
                 <label for="term">Premium payment term:</label>
@@ -60,6 +64,15 @@
                 <label for="inflation">Inflation to consider (%):</label>
                 <br>
                 <input type="number" id="inflation" step="any" required>
+            </div>
+            <div id="flexiOptions" style="display: none;">
+                <label for="bankInterestRate">Bank Interest Rate (%):</label>
+                <br>
+                <input type="number" id="bankInterestRate" step="any" class="input">
+                <br>
+                <label for="annualWithdrawalPercentage">Annual Withdrawal Percentage:</label>
+                <br>
+                <input type="number" id="annualWithdrawalPercentage" class="input">
             </div>
             <button type="submit">Calculate</button>
         </form>
